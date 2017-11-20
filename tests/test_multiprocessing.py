@@ -71,6 +71,12 @@ def test_multiprocessing_training():
                         steps_per_epoch=5,
                         validation_data=custom_generator(True),
                         validation_steps=1)
+                        
+    model.fit_generator(custom_generator(True),
+                        steps_per_epoch=5,
+                        validation_data=custom_generator(True),
+                        validation_steps=1,
+                        workers = 0)
 
     # Test invalid use cases
     def invalid_generator():
@@ -173,6 +179,10 @@ def test_multiprocessing_predicting():
                             steps=5,
                             max_queue_size=10,
                             use_multiprocessing=False)
+    model.predict_generator(custom_generator(),
+                            steps=5,
+                            max_queue_size=10,
+                            workers=0)
 
 
 @keras_test
@@ -206,6 +216,11 @@ def test_multiprocessing_evaluating():
                              steps=5,
                              max_queue_size=10,
                              use_multiprocessing=False)
+    model.evaluate_generator(custom_generator(),
+                             steps=5,
+                             max_queue_size=10,
+                             use_multiprocessing=False,
+                             workers = 0)
 
 
 @keras_test
@@ -237,7 +252,7 @@ def test_multiprocessing_fit_error():
             custom_generator(), samples, 1,
             use_multiprocessing=False,
         )
-
+        
 
 @keras_test
 def test_multiprocessing_evaluate_error():
@@ -295,7 +310,7 @@ def test_multiprocessing_predict_error():
             custom_generator(), good_batches + 1, 1,
             use_multiprocessing=False,
         )
-
+        
 
 if __name__ == '__main__':
     pytest.main([__file__])
