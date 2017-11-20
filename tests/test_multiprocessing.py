@@ -252,7 +252,7 @@ def test_multiprocessing_fit_error():
             custom_generator(), samples, 1,
             use_multiprocessing=False,
         )
-        
+
 
 @keras_test
 def test_multiprocessing_evaluate_error():
@@ -310,7 +310,7 @@ def test_multiprocessing_predict_error():
             custom_generator(), good_batches + 1, 1,
             use_multiprocessing=False,
         )
-        
+
 
 if __name__ == '__main__':
     pytest.main([__file__])
