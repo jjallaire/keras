@@ -2264,17 +2264,17 @@ class Model(Container):
 
         try:
             if workers > 0:
-              if is_sequence:
-                  enqueuer = OrderedEnqueuer(generator,
-                                             use_multiprocessing=use_multiprocessing)
-              else:
-                  enqueuer = GeneratorEnqueuer(generator,
-                                               use_multiprocessing=use_multiprocessing,
-                                               wait_time=wait_time)
-              enqueuer.start(workers=workers, max_queue_size=max_queue_size)
-              output_generator = enqueuer.get()
+                if is_sequence:
+                    enqueuer = OrderedEnqueuer(generator,
+                                               use_multiprocessing=use_multiprocessing)
+                else:
+                    enqueuer = GeneratorEnqueuer(generator,
+                                                 use_multiprocessing=use_multiprocessing,
+                                                 wait_time=wait_time)
+                enqueuer.start(workers=workers, max_queue_size=max_queue_size)
+                output_generator = enqueuer.get()
             else:
-              output_generator = generator
+                output_generator = generator
 
             while steps_done < steps:
                 generator_output = next(output_generator)
@@ -2388,17 +2388,17 @@ class Model(Container):
 
         try:
             if workers > 0:
-              if is_sequence:
-                  enqueuer = OrderedEnqueuer(generator,
-                                             use_multiprocessing=use_multiprocessing)
-              else:
-                  enqueuer = GeneratorEnqueuer(generator,
-                                               use_multiprocessing=use_multiprocessing,
-                                               wait_time=wait_time)
-              enqueuer.start(workers=workers, max_queue_size=max_queue_size)
-              output_generator = enqueuer.get()
+                if is_sequence:
+                    enqueuer = OrderedEnqueuer(generator,
+                                               use_multiprocessing=use_multiprocessing)
+                else:
+                    enqueuer = GeneratorEnqueuer(generator,
+                                                 use_multiprocessing=use_multiprocessing,
+                                                 wait_time=wait_time)
+                enqueuer.start(workers=workers, max_queue_size=max_queue_size)
+                output_generator = enqueuer.get()
             else:
-              output_generator = generator
+                output_generator = generator
 
             if verbose == 1:
                 progbar = Progbar(target=steps)
